@@ -6,12 +6,16 @@ import { SignupComponent } from './components/signup/signup.component';
 import { ResetComponent } from './components/reset/reset.component';
 
 const routes: Routes = [
-  {
-    path: '',
+  {path:'',
     component: LoginComponent,
+    children:[]
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
     children: [
       {
-        path: '',
+        path: 'sample-page',
         redirectTo: 'sample-page',
         pathMatch: 'full'
       },
@@ -40,6 +44,7 @@ const routes: Routes = [
     component: ResetComponent,
     children: []
   },
+  
 
   // ng g m components/admin --route home --module components.module
 ];
