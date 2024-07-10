@@ -1,0 +1,100 @@
+<div class="auth-wrapper aut-bg-img-side cotainer-fiuid align-items-stretch">
+  <div class="row align-items-center w-100 align-items-stretch bg-white">
+    <!-- Background image and canvas remain unchanged -->
+    <div
+      class="col-md-4 align-items-stret h-100 ad-flex justify-content-center content content--side px-5"
+    >
+      <div class="head-block">
+        <img src="assets/images/logo-dark.png" alt="" class="img-fluid mb-4" />
+        <h4 class="mb-3 f-w-400">Create a account</h4>
+      </div>
+
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <div class="form__item">
+          <label class="form__label" for="name">Full Name</label>
+          <input
+            class="form__input form-control"
+            type="text"
+            name="name"
+            id="name"
+            formControlName="name"
+          />
+          <div *ngIf="signupForm.get('name').invalid">
+            <div *ngIf="signupForm.get('name').errors.required">
+              Name is required.
+            </div>
+          </div>
+        </div>
+        <div class="form__item">
+          <label class="form__label" for="email">Email Address</label>
+          <input
+            class="form__input form-control"
+            type="email"
+            name="email"
+            id="email"
+            formControlName="email"
+          />
+          <div *ngIf="signupForm.get('email').invalid">
+            <div *ngIf="signupForm.get('email').errors.required">
+              Email is required.
+            </div>
+            <div *ngIf="signupForm.get('email').errors.email">
+              Please enter a valid email address.
+            </div>
+          </div>
+        </div>
+        <div class="form__item">
+          <label class="form__label" for="password">Password</label>
+          <div class="form__input-wrap">
+            <input
+              class="form__input form-control"
+              type="password"
+              name="password"
+              id="password"
+              formControlName="password"
+            />
+          </div>
+          <div *ngIf="signupForm.get('password').invalid">
+            <div *ngIf="signupForm.get('password').errors.required">
+              Password is required.
+            </div>
+            <div *ngIf="signupForm.get('password').errors.minlength">
+              Password must be at least 8 characters long.
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 m-b-30">
+            <h4 class="mb-3 f-w-400">Select authority</h4>
+            <hr />
+            <select
+              name="authority"
+              class="form-control form-control-default pl-800"
+              formControlName="authority"
+            >
+              <option value="admin">Admin</option>
+              <option value="client">Client</option>
+              <option value="technicien">Technicien</option>
+            </select>
+          </div>
+        </div>
+        <div class="form__item form__item--actions">
+          <span class="text-muted"
+            >Already have an account?
+            <a class="form__link" [routerLink]="['/login']">Login here</a></span
+          >
+          <br />
+          <br />
+          <br />
+          <button
+            class="form__button btn btn-primary"
+            type="submit"
+            [disabled]="!signupForm.valid"
+          >
+            Signup
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
