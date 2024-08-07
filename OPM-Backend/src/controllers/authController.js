@@ -9,6 +9,8 @@ const tokenGen = require("../middlewares/tokenMiddleware");
 const sendEmail = require('../middlewares/mailer');
 
 exports.register = async (req, res) => {
+
+  console.log("test")
   const { email, password, authority } = req.body;
   let Model;
   switch (authority) {
@@ -58,33 +60,34 @@ exports.login = async (req, res) => {
   const { email, password } = req.body;
   try {
     var user = await Admin.findOne({ email });
-    if (!user){
-    user = await User.findOne({ email });
     if (!user) {
-      return res.status(404).json({ message: 'Invalid email or password' });
-    }}
-    if (user.valid == false) {
-      return res.status(404).json({ message: 'account in progress' });
+      user = await User.findOne({ email });
+      if (!user) {
+        return res.status(404).json({ message: 'Invalid email or password' });
+      }
     }
-    
+    if (user.valid == false) {
+      return res.status(404).json({ message: 'Account in progress' });
+    }
+
     const passwordMatch = await bcrypt.compare(password, user.password);
     if (!passwordMatch) {
       return res.status(404).json({ message: 'Invalid email or password' });
     }
+
     var contract;
-    var folder ;
-    var nameFolder = null
-    if (user.authority == "client"){
+    var folder;
+    var nameFolder = null;
+    if (user.authority == "client") {
       contract = await Contract.findById(user.contractId);
-      folder = await Folder.find({clientId:user._id})
-       nameFolder =folder[0].name 
+      folder = await Folder.find({ clientId: user._id });
+      nameFolder = folder[0].name;
     }
-  
-    const payload = {user, contract,folder:nameFolder};
+
+    const payload = { user, contract, folder: nameFolder };
     const { accessToken, refreshToken } = await tokenGen.generateToken(user);
     res.setHeader('Authorization', `Bearer ${accessToken}`);
-    //res.setHeader('Refresh-Token', refreshToken); it will be sent with httpOnly cookie 
-    res.status(200).json({ message: 'Login successful', payload, accessToken, refreshToken});
+    res.status(200).json({ message: 'Login successful', payload, accessToken, refreshToken });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error logging in' });

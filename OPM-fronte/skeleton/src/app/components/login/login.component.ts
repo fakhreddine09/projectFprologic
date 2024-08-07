@@ -1,26 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SharedService } from 'src/app/services/shared.service';
+import { Component } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
+export class LoginComponent {
+  email: string = '';
+  password: string = '';
+  errorMessage: string = '';
 
-  constructor(private fb: FormBuilder,private _shared:SharedService) { }
+  constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit(): void {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-      remember: [false]
-    });
-  }
-
-  login() {
-    this._shared.getlogin(this.loginForm.value.email,this.loginForm.value.password);
+  onLogin() {
+    this.authService.login(this.email, this.password).subscribe(
+      response => {
+        console.log('Login successful:', response);
+        this.router.navigate(['/admin']); // Adjust this path as needed
+      },
+      error => {
+        console.error('Login failed:', error);
+        this.errorMessage = 'Invalid email or password';
+      }
+    );
   }
 }

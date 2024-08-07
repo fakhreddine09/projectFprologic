@@ -1,61 +1,56 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { ComponentsRoutingModule } from './components-routing.module';
-import { AddAndUpdateContractComponent } from './contractMang/add-and-update-contract/add-and-update-contract.component';
+import { RouterModule } from '@angular/router';
+import {LoginComponent} from './login/login.component'
+import {AdminComponent} from './admin/admin.component'
+import {SignupComponent} from './signup/signup.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FileUploadModule } from '@iplab/ngx-file-upload';
-import { AffecteTeamsComponent } from './contractMang/affecte-teams/affecte-teams.component';
-import { DataTablesModule } from 'angular-datatables';
-
-import { AffecteTeamsModule } from './contractMang/affecte-teams/affecte-teams.module';
-import { AddFilesToContractModule } from './contractMang/add-files-to-contract/add-files-to-contract.module';
-import { AddClientModule } from './add-client/add-client.module';
-import { AddUpdateSitesComponent } from './contractMang/add-update-sites/add-update-sites.component';
-import { AddUpdateEquipemontComponent } from './contractMang/add-update-equipemont/add-update-equipemont.component';
-import { AddCustomerManagementComponent } from './contractMang/add-customer-management/add-customer-management.component';
-import { AddUpdateEquipemontSofetComponent } from './contractMang/add-update-equipemont-sofet/add-update-equipemont-sofet.component';
-import { AddUpdateSupportComponent } from './support/add-update-support/add-update-support.component';
-import { AddUpdatevisitPrevComponent } from './contractMang/add-updatevisit-prev/add-updatevisit-prev.component';
-import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
-import { AjouterEtmodifierVisiteComponent } from './MangFolders/ajouter-etmodifier-visite/ajouter-etmodifier-visite.component';
-import { AddUpdateFoldersModule } from './MangFolders/add-update-folders/add-update-folders.module';
-import { ImpoertListEquipmentHaredComponent } from './contractMang/impoert-list-equipment-hared/impoert-list-equipment-hared.component';
-import { ImpoertListEquipmentSoftComponent } from './contractMang/impoert-list-equipment-soft/impoert-list-equipment-soft.component';
-import { InfoClanderModule } from './contractMang/info-clander/info-clander.module';
-import { CustomerAddAffectComponent } from './contractMang/customer-add-affect/customer-add-affect.component';
-import { CustomerAffectOledComponent } from './contractMang/customer-affect-oled/customer-affect-oled.component';
+import { NavigationComponent } from './admin/navigation/navigation.component';
+import { NavLogoComponent } from './admin/navigation/nav-logo/nav-logo.component';
+import { NavContentComponent } from './admin/navigation/nav-content/nav-content.component';
+import {NavigationItem} from './admin/navigation/navigation';
+import { NavGroupComponent } from './admin/navigation/nav-content/nav-group/nav-group.component';
+import { NavCollapseComponent } from './admin/navigation/nav-content/nav-collapse/nav-collapse.component';
+import { NavItemComponent } from './admin/navigation/nav-content/nav-item/nav-item.component';
+import { NavBarComponent } from './admin/nav-bar/nav-bar.component';
+import {NgbButtonsModule, NgbDropdownModule, NgbTabsetModule, NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
+import { NavLeftComponent } from './admin/nav-bar/nav-left/nav-left.component';
+import { NavSearchComponent } from './admin/nav-bar/nav-right/nav-search/nav-search.component';
+import { NavRightComponent } from './admin/nav-bar/nav-right/nav-right.component';
+import {ChatUserListComponent} from './admin/nav-bar/nav-right/chat-user-list/chat-user-list.component';
+import { FriendComponent } from './admin/nav-bar/nav-right/chat-user-list/friend/friend.component';
+import {ChatMsgComponent} from './admin/nav-bar/nav-right/chat-msg/chat-msg.component';
+import { ConfigurationComponent } from './admin/configuration/configuration.component';
 
 @NgModule({
   declarations: [
-    AddAndUpdateContractComponent,
-    AddUpdateSitesComponent, 
-    AddUpdateEquipemontComponent,
-    AddCustomerManagementComponent,
-    AddUpdateEquipemontSofetComponent,
-    AddUpdateSupportComponent,
-    AddUpdatevisitPrevComponent,
-    AjouterEtmodifierVisiteComponent,
-    ImpoertListEquipmentHaredComponent,
-    ImpoertListEquipmentSoftComponent,
-    CustomerAddAffectComponent,
-    CustomerAffectOledComponent,
-    ],
+  ],
   imports: [
     CommonModule,
-    ComponentsRoutingModule,
+    RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    FileUploadModule,
-    AffecteTeamsModule,
-    AddFilesToContractModule,
-    InfoClanderModule,
-    AddClientModule,
-    NgbDatepickerModule,
-    AddUpdateFoldersModule,
+    LoginComponent,
+    AdminComponent,
+    SignupComponent,
+    NavBarComponent,
+    NavCollapseComponent,
+    NavContentComponent,
+    NavGroupComponent,
+    NavItemComponent,
+    NavLeftComponent,
+    NavLogoComponent,
+    NavRightComponent,
+    NavSearchComponent,
+    NavigationComponent,
+    NavigationItem,
+    ConfigurationComponent,
+    ChatUserListComponent,
+    FriendComponent,
+    ChatMsgComponent,
+    
   ],
   exports: [
-    AddAndUpdateContractComponent // Export if it needs to be used in other modules
-  ]
+  ],
 })
 export class ComponentsModule { }

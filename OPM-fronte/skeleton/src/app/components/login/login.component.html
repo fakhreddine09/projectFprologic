@@ -1,110 +1,98 @@
-<div class="auth-prod-slider">
-  <div class="blur-bg-images"></div>
-  <div class="auth-wrapper">
-    <div class="auth-content container">
-      <div class="card">
-        <div class="row align-items-center">
-          <div class="col-md-6">
-            <div class="card-body">
-              <img
-                src="assets/images/logo-dark.png"
-                alt=""
-                class="img-fluid mb-4"
-              />
-              <h4 class="mb-3 f-w-400">Login into your account</h4>
-
-              <!-- Reactive Form -->
-              <form [formGroup]="loginForm" (ngSubmit)="login()">
-                <div class="form-group">
-                  <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"
-                        ><i class="feather icon-mail"></i
-                      ></span>
-                    </div>
-                    <input
-                      formControlName="email"
-                      type="email"
-                      class="form-control"
-                      placeholder="Email address"
-                    />
-                  </div>
-                  <div
-                    *ngIf="
-                      loginForm.get('email').invalid &&
-                      (loginForm.get('email').dirty ||
-                        loginForm.get('email').touched)
-                    "
-                    class="text-danger"
-                  >
-                    <div *ngIf="loginForm.get('email').errors?.required">
-                      Email is required.
-                    </div>
-                    <div *ngIf="loginForm.get('email').errors?.email">
-                      Invalid email format.
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"
-                        ><i class="feather icon-lock"></i
-                      ></span>
-                    </div>
-                    <input
-                      formControlName="password"
-                      type="password"
-                      class="form-control"
-                      placeholder="Password"
-                    />
-                  </div>
-                  <div
-                    *ngIf="
-                      loginForm.get('password').invalid &&
-                      (loginForm.get('password').dirty ||
-                        loginForm.get('password').touched)
-                    "
-                    class="text-danger"
-                  >
-                    <div *ngIf="loginForm.get('password').errors?.required">
-                      Password is required.
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group text-left mt-2">
-                  <div class="checkbox checkbox-primary d-inline">
-                    <input
-                      type="checkbox"
-                      formControlName="remember"
-                      id="checkbox-fill-a1"
-                    />
-                    <label for="checkbox-fill-a1" class="cr"
-                      >Save credentials</label
-                    >
-                  </div>
-                </div>
-                <button
-                  type="submit"
-                  class="btn btn-primary mb-4"
-                  [disabled]="loginForm.invalid"
-                >
-                  Login
-                </button>
-              </form>
-
-              <p class="mb-2 text-muted">
-                Forgot password?
-                <a [routerLink]="['/reset']" class="f-w-400">Reset</a>
-              </p>
-              <p class="mb-0 text-muted">
-                Don’t have an account?
-                <a [routerLink]="['/signup']" class="f-w-400">Signup</a>
-              </p>
+<div class="auth-wrapper aut-bg-img-side container-fluid align-items-stretch">
+  <div class="row align-items-center w-100 align-items-stretch bg-white">
+    <div
+      class="d-none d-lg-flex col-md-8 aut-bg-img d-md-flex justify-content-center"
+    >
+      <div class="col-md-8 d-flex">
+        <div class="auth-content d-flex align-items-stretch">
+          <div
+            id="carouselExampleCaptions"
+            class="carousel slide"
+            data-ride="carousel"
+          >
+            <ol class="carousel-indicators justify-content-start mx-0">
+              <li
+                data-target="#carouselExampleCaptions"
+                data-slide-to="0"
+                class="active"
+              ></li>
+              <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+              <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <h1 class="text-white mb-5">Login in Elite Able</h1>
+                <p class="text-white">
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever.
+                </p>
+              </div>
+              <div class="carousel-item">
+                <h1 class="text-white mb-5">Login in Elite Able</h1>
+                <p class="text-white">
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever.
+                </p>
+              </div>
+              <div class="carousel-item">
+                <h1 class="text-white mb-5">Login in Elite Able</h1>
+                <p class="text-white">
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever.
+                </p>
+              </div>
             </div>
           </div>
-          <div class="col-md-6 d-none d-md-block"></div>
         </div>
+      </div>
+    </div>
+    <div
+      class="col-md-4 align-items-stretch h-100 d-flex justify-content-center"
+    >
+      <div class="auth-content">
+        <img src="assets/images/logo-dark.png" alt="" class="img-fluid mb-4" />
+        <h4 class="mb-3 f-w-400">Login into your account</h4>
+        <form (ngSubmit)="onLogin()">
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <span class="input-group-text"
+                ><i class="feather icon-mail"></i
+              ></span>
+            </div>
+            <input
+              type="email"
+              class="form-control"
+              placeholder="Email address"
+              [(ngModel)]="email"
+              name="email"
+              required
+            />
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text"
+                ><i class="feather icon-lock"></i
+              ></span>
+            </div>
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Password"
+              [(ngModel)]="password"
+              name="password"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn btn-primary mb-4">Login</button>
+        </form>
+        <p class="mb-0 text-muted">
+          Don’t have an account?
+          <a [routerLink]="['/signup']" class="f-w-400">Signup</a>
+        </p>
       </div>
     </div>
   </div>

@@ -78,7 +78,7 @@ mongoose
 // ========= configurring routes ==========
 
 //app.use("/user", userRoute); not going to use those
-app.use("/",authRoute);
+app.use("/auth",authRoute);
 
 app.use("/client", auth.verify, clientRoute);
 app.use("/employee", auth.verify, employeeRoute);

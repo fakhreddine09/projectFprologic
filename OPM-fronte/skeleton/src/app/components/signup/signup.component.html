@@ -1,100 +1,116 @@
-<div class="auth-wrapper aut-bg-img-side cotainer-fiuid align-items-stretch">
-  <div class="row align-items-center w-100 align-items-stretch bg-white">
-    <!-- Background image and canvas remain unchanged -->
-    <div
-      class="col-md-4 align-items-stret h-100 ad-flex justify-content-center content content--side px-5"
-    >
-      <div class="head-block">
-        <img src="assets/images/logo-dark.png" alt="" class="img-fluid mb-4" />
-        <h4 class="mb-3 f-w-400">Create a account</h4>
-      </div>
-
-      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-        <div class="form__item">
-          <label class="form__label" for="name">Full Name</label>
-          <input
-            class="form__input form-control"
-            type="text"
-            name="name"
-            id="name"
-            formControlName="name"
-          />
-          <div *ngIf="signupForm.get('name').invalid">
-            <div *ngIf="signupForm.get('name').errors.required">
-              Name is required.
-            </div>
-          </div>
-        </div>
-        <div class="form__item">
-          <label class="form__label" for="email">Email Address</label>
-          <input
-            class="form__input form-control"
-            type="email"
-            name="email"
-            id="email"
-            formControlName="email"
-          />
-          <div *ngIf="signupForm.get('email').invalid">
-            <div *ngIf="signupForm.get('email').errors.required">
-              Email is required.
-            </div>
-            <div *ngIf="signupForm.get('email').errors.email">
-              Please enter a valid email address.
-            </div>
-          </div>
-        </div>
-        <div class="form__item">
-          <label class="form__label" for="password">Password</label>
-          <div class="form__input-wrap">
-            <input
-              class="form__input form-control"
-              type="password"
-              name="password"
-              id="password"
-              formControlName="password"
+<div class="auth-wrapper">
+  <div class="auth-content container">
+    <div class="card">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <div class="card-body">
+            <img
+              src="assets/images/logo-dark.png"
+              alt=""
+              class="img-fluid mb-4"
             />
-          </div>
-          <div *ngIf="signupForm.get('password').invalid">
-            <div *ngIf="signupForm.get('password').errors.required">
-              Password is required.
-            </div>
-            <div *ngIf="signupForm.get('password').errors.minlength">
-              Password must be at least 8 characters long.
-            </div>
+            <h4 class="mb-3 f-w-400">Sign up into your account</h4>
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="feather icon-user"></i>
+                  </span>
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="First Name"
+                  formControlName="firstName"
+                  required
+                />
+              </div>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="feather icon-user"></i>
+                  </span>
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Last Name"
+                  formControlName="lastName"
+                  required
+                />
+              </div>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="feather icon-calendar"></i>
+                  </span>
+                </div>
+                <input
+                  type="date"
+                  class="form-control"
+                  placeholder="Birth Date"
+                  formControlName="birthDate"
+                  required
+                />
+              </div>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="feather icon-mail"></i>
+                  </span>
+                </div>
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Email Address"
+                  formControlName="email"
+                  required
+                />
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="feather icon-lock"></i>
+                  </span>
+                </div>
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Password"
+                  formControlName="password"
+                  required
+                />
+              </div>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="feather icon-shield"></i>
+                  </span>
+                </div>
+                <select
+                  class="form-control"
+                  formControlName="authority"
+                  required
+                >
+                  <option value="client">Client</option>
+                  <option value="commercial">Commercial</option>
+                  <option value="technician">Technician</option>
+                </select>
+              </div>
+              <button class="btn btn-primary mb-4" type="submit">
+                Sign up
+              </button>
+              <p class="mb-2">
+                Already have an account?
+                <a [routerLink]="['/login']" class="f-w-400">Log in</a>
+              </p>
+            </form>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-12 m-b-30">
-            <h4 class="mb-3 f-w-400">Select authority</h4>
-            <hr />
-            <select
-              name="authority"
-              class="form-control form-control-default pl-800"
-              formControlName="authority"
-            >
-              <option value="admin">Admin</option>
-              <option value="client">Client</option>
-              <option value="technicien">Technicien</option>
-            </select>
-          </div>
+        <div class="col-md-6 d-none d-md-block">
+          <img src="assets/images/auth-bg.jpg" alt="" class="img-fluid" />
         </div>
-        <div class="form__item form__item--actions">
-          <span class="text-muted"
-            >Already have an account?
-            <a class="form__link" [routerLink]="['']">Login here</a></span
-          >
-          <br />
-          <br />
-          <br />
-          <button
-            class="form__button btn btn-primary"
-            type="submit"
-            [disabled]="!signupForm.valid"
-          >
-            Signup
-          </button>
-        </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>
